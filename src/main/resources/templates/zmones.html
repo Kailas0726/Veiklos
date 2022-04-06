@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zmones</title>
+</head>
+
+<body>
+
+	<table>
+		<tr th:each="zmones : ${zmones}">
+			<td th:text="${zmones.getVardas()}"></td>
+			<td th:text="${zmones.getPavarde()}"></td>
+			<td th:text="${zmones.getElektroninis_pastas()}"></td>			
+			<td th:text="${zmones.getTelefono_numeris()}"></td>			
+		</tr>
+	</table>	
+	
+</body>
+
+
+
+
+
+
+
+</html>
