@@ -55,6 +55,36 @@
 			$( "#pridejimo_mygtukas" ).button().on( "click", function() {
 			      dialog.dialog( "open" );
 			});
+			
+			  $( ".edit" ).each ( function() {
+		    
+		    	$( this ).click ( function() {
+		    	
+		    		id_zmogaus = $( this ).data ( 'id' );
+		    		
+					$.ajax({
+						 method: 'POST'
+				 		 , url: '/zmogus'
+				 		 , data: {
+				 		 	id: id_zmogaus
+				 		 }
+					}).done( function( data ) {
+						
+						if ( data != null ) {
+						
+							$( '#vardas' ).val ( data.vardas );
+							$( '#pavarde' ).val ( data.pavarde );
+							$( '#elektroninis_pastas' ).val ( data.elektroninis_pastas );
+							$( '#telefono_numeris' ).val ( data.telefono_numeris );				
+							$( '#id').val ( data.id );
+		      				dialog.dialog( "open" );							
+						}
+
+				  	});			    		
+		    		
+		    	});	
+		    			    
+		    });
 		});
   		
   	</script>
@@ -67,7 +97,8 @@
 			<td th:text="${zmones.getVardas()}"></td>
 			<td th:text="${zmones.getPavarde()}"></td>
 			<td th:text="${zmones.getElektroninis_pastas()}"></td>			
-			<td th:text="${zmones.getTelefono_numeris()}"></td>			
+			<td th:text="${zmones.getTelefono_numeris()}"></td>	
+			<td><button class="edit" th:attr="data-id=${zmones.getId()}" value="redaguoti">Redaguoti</button></td>		
 		</tr>
 	</table>
 	

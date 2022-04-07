@@ -1,5 +1,6 @@
 package Veiklos_Web;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ZmonesController {
@@ -56,5 +58,26 @@ public class ZmonesController {
 		
 		return "zmones";
 	}
+	
+	@RequestMapping(path="/zmogus")	
+	public @ResponseBody Zmones zmoniuDuom(@RequestParam(name="id", required=true, defaultValue="0") Integer id ) throws IOException {
 
+		Zmones zmones = new Zmones();
+		
+		if (id > 0) {
+			
+			Optional <Zmones> found = zmones_repository.findById( id );
+		
+			if ( found.isPresent() ) {
+			
+			   zmones = found.get();
+			   zmones.setId ( id );
+			   
+			} 
+		}		
+		
+		return zmones;
+
+	}
+	
 }
