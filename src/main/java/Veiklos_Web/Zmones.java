@@ -1,6 +1,5 @@
 package Veiklos_Web;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,11 +7,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Zmones {
-
+	
 		public Zmones() {
 			
 			super();
-			
+
 		}
 
 		 @Id
@@ -73,9 +72,6 @@ public class Zmones {
 			
 			this.telefono_numeris = telefono_numeris;
 			
-		}
-		
-		
-		
+		}	
 		
 }

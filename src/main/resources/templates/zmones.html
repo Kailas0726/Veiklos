@@ -2,6 +2,62 @@
 <html>
 <head>
 	<title>Zmones</title>
+	
+	<meta charset="utf-8">
+	
+	<style>
+	
+		table{
+    		
+				border-collapse: collapse;
+			
+			}
+			
+			th, td{
+			
+				border: 1px solid red;
+				padding: 8px;
+			
+			}
+			
+	</style>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  	
+  	<script>
+  		
+  		$(document).ready(function(){
+			var dialog, form;
+			
+			function addVartotojas() {
+			
+				form.submit();
+			}
+			
+			dialog = $( "#vartotojo_pridejimas" ).dialog({
+			      autoOpen: false,
+			      height: 400,
+			      width: 350,
+			      modal: true,
+			      buttons: {
+				"Vartotojo pridejimas": addVartotojas,
+				Cancel: function() {
+				dialog.dialog( "close" );
+				}
+			     }
+			});
+			
+			form = dialog.find( "form" );
+			
+			$( "#pridejimo_mygtukas" ).button().on( "click", function() {
+			      dialog.dialog( "open" );
+			});
+		});
+  		
+  	</script>
 </head>
 
 <body>
@@ -13,7 +69,24 @@
 			<td th:text="${zmones.getElektroninis_pastas()}"></td>			
 			<td th:text="${zmones.getTelefono_numeris()}"></td>			
 		</tr>
-	</table>	
+	</table>
+	
+	<div id="vartotojo_pridejimas">
+		<form method="post" action="">
+			<label for="vardas"><br> Vardas: <br></label>
+			<input type="text" name="vardas" id="vardas" value="">
+			<label for="pavarde"><br> Pavardė: <br></label>
+			<input type="text" name="pavarde" id="pavarde" value="">
+			<label for="elektroninis_pastas"><br> Elektroninis paštas: <br></label>
+			<input type="text" name="elektroninis_pastas" id="elektroninis_pastas" value="">
+			<label for="telefono_numeris"><br> Telefono numeris: <br></label>
+			<input type="text" name="telefono_numeris" id="telefono_numeris" value="">
+			<input type="hidden" id="id" name="id" value="0">
+			<input type="hidden" id="prideti" name="prideti" value="prideti">
+		</form>
+	</div>
+		
+	<button id="pridejimo_mygtukas">Vartotojo pridejimas</button>
 	
 </body>
 
