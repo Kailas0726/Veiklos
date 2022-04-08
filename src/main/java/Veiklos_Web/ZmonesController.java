@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -78,6 +79,28 @@ public class ZmonesController {
 		
 		return zmones;
 
+	}
+	
+	@RequestMapping(path="/salinti-vartotoja")
+	public  String salintiVartotoja (@RequestParam(name="id_iraso", required=true, defaultValue="0") Integer id 
+			, @RequestParam(name="salinti", required=false, defaultValue="0") String salinti
+			) {
+		
+		Zmones zmones = new Zmones();
+		
+		if ( salinti.equals( "salinti" ) ) {
+			System.out.println(id);
+			Optional <Zmones> found = zmones_repository.findById( id );
+			
+				if ( found.isPresent() ) {
+					
+					   zmones = found.get();
+					   zmones_repository.deleteById(id);
+
+				}
+			
+		}
+		return "redirect:zmones";
 	}
 	
 }

@@ -58,7 +58,7 @@
 			
 			  $( ".edit" ).each ( function() {
 		    
-		    	$( this ).click ( function() {
+		    	$( this ).button().click ( function() {
 		    	
 		    		id_zmogaus = $( this ).data ( 'id' );
 		    		
@@ -85,6 +85,31 @@
 		    	});	
 		    			    
 		    });
+		    
+		    	  del_dialog = $( "#dialog-confirm" ).dialog({
+			
+			      autoOpen: false,
+			      resizable: false,
+			      height: "auto",
+			      width: 400,
+			      modal: true,
+			      buttons: {
+				"Pašalinti": function() {
+					$( this ).dialog( "close" );
+					$( '#salinimo_forma' ).submit();
+			          },
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			      }
+			});
+			
+			$( '.delete' ).button().on ( 'click', function() {
+				id_iraso = $( this ).data( 'id' );
+				console.log(id_iraso);
+				$( '#id_iraso' ).val ( id_iraso );
+				del_dialog.dialog( "open" );
+			});
 		});
   		
   	</script>
@@ -98,7 +123,8 @@
 			<td th:text="${zmones.getPavarde()}"></td>
 			<td th:text="${zmones.getElektroninis_pastas()}"></td>			
 			<td th:text="${zmones.getTelefono_numeris()}"></td>	
-			<td><button class="edit" th:attr="data-id=${zmones.getId()}" value="redaguoti">Redaguoti</button></td>		
+			<td><button class="edit" th:attr="data-id=${zmones.getId()}" value="redaguoti">Redaguoti</button></td>
+			<td><button class="delete" th:attr="data-id=${zmones.getId()}">Šalinti</button></td>		
 		</tr>
 	</table>
 	
@@ -114,6 +140,14 @@
 			<input type="text" name="telefono_numeris" id="telefono_numeris" value="">
 			<input type="hidden" id="id" name="id" value="0">
 			<input type="hidden" id="prideti" name="prideti" value="prideti">
+		</form>
+	</div>
+	
+	<div id="dialog-confirm" title="Pasirinktų duomenų šalinimas">
+		<p>Ar tikrai norite ištrinti pasirinktus duomenis?</p>
+		<form id="salinimo_forma" method="post" action="/salinti-vartotoja">
+				<input type="hidden" name="salinti" id="salinti" value="salinti">
+				<input type="hidden" name="id_iraso" id="id_iraso" value="0">	
 		</form>
 	</div>
 		
