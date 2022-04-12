@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Zmones {
@@ -18,11 +20,26 @@ public class Zmones {
 		 @GeneratedValue(strategy=GenerationType.IDENTITY)
 		 
 		 private Integer id;
+		 private Integer id_partijos;
 		 private String vardas;
 		 private String pavarde;
 		 private String elektroninis_pastas;
 		 private String telefono_numeris;
 		 
+		 @ManyToOne
+		 @JoinColumn(name="id_partijos", referencedColumnName="id", insertable=false, updatable=false)
+		 private Partijos partija;
+		 
+		public Partijos getPartija() {
+			
+			return partija;
+			
+		}
+		public void setPartija(Partijos partija) {
+			
+			this.partija = partija;
+			
+		}
 		public Integer getId() {
 			
 			return id;
@@ -31,6 +48,17 @@ public class Zmones {
 		public void setId(Integer id) {
 			
 			this.id = id;
+			
+		}
+		
+		public Integer getId_partijos() {
+			
+			return id_partijos;
+			
+		}
+		public void setId_partijos(Integer id_partijos) {
+			
+			this.id_partijos = id_partijos;
 			
 		}
 		public String getVardas() {

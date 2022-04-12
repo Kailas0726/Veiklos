@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Veiklos</title>
+	
+	<meta charset="utf-8">
+	
+	<style>
+	
+		table{
+    		
+				border-collapse: collapse;
+			
+			}
+			
+			th, td{
+			
+				border: 1px solid red;
+				padding: 8px;
+			
+			}
+			
+			#linkas{
+				
+				 text-decoration: none;
+				
+			}
+			
+			button{
+			
+				margin: 0 auto;
+    			display: block;
+			
+			}
+			
+	</style>
+
+</head>
+
+<body>
+
+	<table>
+	   <tr>
+	    <th>Veikla</th>
+	    <th>Veiklos aprašymas</th>
+	    <th>Dalyvaujančių žmonių skaičius</th>
+	    <th>Išsamesnė dalyvių informacija</th>
+	   </tr>
+		
+		<tr th:each="veiklos : ${veiklos}">
+			<td th:text="${veiklos.getVeikla()}"></td>
+			<td th:text="${veiklos.getAprasymas()}"></td>
+			<td></td>
+			<td><button><a id="linkas" href="">Žmonių duomenys</a></td>
+		</tr>
+	</table>
+	
+</body>
+
+
+
+
+
+
+
+</html>
