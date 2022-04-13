@@ -34,6 +34,20 @@
 			}
 			
 	</style>
+	
+	<script>
+	
+	   $(document).ready(function(){
+		    
+		    $( "#linkas" ).button().on( "click", function(){
+		    
+		    	location.href = "veikla1";
+		    	
+	        });
+	        
+	    });
+    
+	</script>
 
 </head>
 
@@ -47,16 +61,15 @@
 	    <th>Išsamesnė dalyvių informacija</th>
 	   </tr>
 		
-		<tr th:each="veiklos : ${veiklos}">
-			<td th:text="${veiklos.getVeikla()}"></td>
-			<td th:text="${veiklos.getAprasymas()}"></td>
+		<tr th:each="veikla : ${veiklos}">
+			<td th:text="${veikla.getVeikla()}"></td>
+			<td th:text="${veikla.getAprasymas()}"></td>
 			<td></td>
-			<td><button><a id="linkas" href="">Žmonių duomenys</a></td>
+			<td><button><a id="linkas" th:href=@{veikla1(i=${veikla.getId()})}>Žmonių duomenys</a></button></td>
 		</tr>
 	</table>
 	
 </body>
-
 
 
 
