@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Zmones {
 	
@@ -26,6 +28,7 @@ public class Zmones {
 		 private String elektroninis_pastas;
 		 private String telefono_numeris;
 		 
+		 //@JsonIgnore
 		 @ManyToOne
 		 @JoinColumn(name="id_partijos", referencedColumnName="id", insertable=false, updatable=false)
 		 private Partijos partija;

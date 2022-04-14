@@ -1,13 +1,17 @@
 package Veiklos_Web;
 
-import java.util.function.Predicate;
+//import java.util.List;
+//import java.util.function.Predicate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+//import javax.persistence.OneToMany;
+
 
 @Entity
 public class ZmonesVeiklos {
@@ -27,6 +31,20 @@ public class ZmonesVeiklos {
 	private String kontaktai;
 	private String veiklos_vieta;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="zmones_id", referencedColumnName="id",insertable=false, updatable=false)
+	private Zmones zmones;
+	
+	public Zmones getZmones() {
+		
+		return zmones;
+		
+	}
+	public void setZmones(Zmones zmones) {
+		
+		this.zmones = zmones;
+		
+	}
 	public Integer getId() {
 		
 		return id;

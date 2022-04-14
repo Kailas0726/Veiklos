@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -34,9 +34,9 @@ public class VeiklosController {
 			
 			}
 	
-	@RequestMapping("/veikla1json")
-	public /*String*/@ResponseBody Veiklos veikla1json(@RequestParam(name="i", required=true, defaultValue="0") String id, Model model)
-	{
+	//@RequestMapping("/veikla1")
+	//public /*String*/@ResponseBody Veiklos veikla1(@RequestParam(name="i", required=true, defaultValue="0") String id, Model model)
+	/*{
 		//model.addAttribute("name", id);
 		Optional<Veiklos> veikla11 = veiklos_repository.findById(Integer.parseInt(id));
 		Veiklos veikla111 = null;
@@ -46,7 +46,7 @@ public class VeiklosController {
 			
 		}
 		return veikla111;
-	}
+	}*/
 	
 	@RequestMapping("/veikla1")
 	public String veikla1(@RequestParam(name="i", required=true, defaultValue="0") String id, Model model)
@@ -59,8 +59,11 @@ public class VeiklosController {
 			veikla111 = veikla11.get();
 			
 		}
+		
 		model.addAttribute("veikla1", veikla111);
+		
 		return "veikla1";
+		
 	}
 	
 }
