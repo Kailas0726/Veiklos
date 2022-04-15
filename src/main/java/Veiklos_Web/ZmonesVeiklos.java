@@ -30,6 +30,7 @@ public class ZmonesVeiklos {
 	private Integer veiklos_id;
 	private String kontaktai;
 	private String veiklos_vieta;
+	private String veiklos_sritis;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="zmones_id", referencedColumnName="id",insertable=false, updatable=false)
@@ -95,6 +96,18 @@ public class ZmonesVeiklos {
 		this.veiklos_vieta = veiklos_vieta;
 		
 	}
+	
+	public String getVeiklos_sritis() {
+		
+		return veiklos_sritis;
+		
+	}
+	public void setVeiklos_sritis(String veiklos_sritis) {
+		
+		this.veiklos_sritis = veiklos_sritis;
+		
+	}
+	
 	
 	
 

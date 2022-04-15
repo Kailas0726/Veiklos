@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Veiklos1</title>
 	
@@ -20,25 +21,79 @@
 			
 			}
 			
+			#grazinimas {
+			
+				position: relative;
+				top: 30px;
+				
+			}
+			
+			#lentele{
+			
+				position: relative;
+				top: 15px;
+				
+			}
+			
 	</style>
+	
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+	
+	<script>
+	
+		$(document).ready(function(){
+		
+		    $( "#grazinimas" ).button().on( "click", function(){
+		    
+		    	location.href = "veiklos";
+		    	
+	        });
+	    });
+	    
+	 </script>
 
 </head>
 
 <body>
 
 	<table>
-	   <tr>
-	    <th>Veikla</th>
-	    <th>Veiklos aprašymas</th>
-	    <th>Dalyvaujančių žmonių skaičius</th>
-	   </tr>
+	    <tr>
+	    	<th>Veikla</th>
+	    	<th>Veiklos aprašymas</th>
+	    	<th>Dalyvaujančių žmonių skaičius</th>
+	    </tr>
+	    <tr>
+	    	<td th:text="${veikla1.getVeikla()}"></td>
+	    	<td th:text="${veikla1.getAprasymas()}"></td>
+	    	<td></td>
+	    </tr>
 		
-		<tr th:each="veikla : ${veiklos}">
-			<td th:text="${veikla.getVeikla()}"></td>
-			<td th:text="${veikla.getAprasymas()}"></td>
-			<td></td>
-		</tr>
+			
 	</table>
+	
+	<h3>Žmonių Sąrašas :</h3>
+	
+	<table id="lentele">
+		<tr>
+			<th>Vardas</th>
+	    	<th>Pavardė</th>
+	    	<th>Elektroninis paštas</th>
+	    	<th>Kontaktai</th>
+	    	<th>Veiklos Vieta</th>
+	    	<th>Veiklos sritis</th>
+		</tr>
+		<tr th:each="zmones_veiklos : ${veikla1.getZmones_veiklos()}" >
+			<td><span th:text="|${zmones_veiklos.getZmones().getVardas()} |"></span></td>
+			<td><span th:text="|${zmones_veiklos.getZmones().getPavarde()} |"></span></td>
+			<td><span th:text="|${zmones_veiklos.getZmones().getElektroninis_pastas()} |"></span></td>
+			<td><span th:text="|${zmones_veiklos.getKontaktai()} |"></span></td>
+			<td><span th:text="|${zmones_veiklos.getVeiklos_vieta()} |"></span></td>
+			<td><span th:text="|${zmones_veiklos.getVeiklos_sritis()} |"></span></td>
+		</tr>	
+	</table>
+	
+	<button id="grazinimas">Grįžti į pagrindinį puslapį</button>
 	
 </body>
 
