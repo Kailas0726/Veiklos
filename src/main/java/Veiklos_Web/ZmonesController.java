@@ -56,6 +56,7 @@ public class ZmonesController {
 		}
 		
 		model.addAttribute("zmones", zmones_repository.findAll());
+		model.addAttribute("lst_menu", Menu.values() );
 		
 		return "zmones";
 	}

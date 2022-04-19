@@ -5,6 +5,9 @@
 	
 	<meta charset="utf-8">
 	
+	<link rel="stylesheet" href="main_style.css">
+	<link rel="stylesheet" href="menu.css">
+	
 	<style>
 	
 		table{
@@ -117,43 +120,55 @@
 
 <body>
 
-	<table>
-		<tr th:each="zmones : ${zmones}">
-			<td th:text="${zmones.getVardas()}"></td>
-			<td th:text="${zmones.getPavarde()}"></td>
-			<td th:text="${zmones.getPartija()} == null ? '???' : ${zmones.getPartija().getPartija()}"></td>	
-			<td th:text="${zmones.getElektroninis_pastas()}"></td>			
-			<td th:text="${zmones.getTelefono_numeris()}"></td>	
-			<td><button class="edit" th:attr="data-id=${zmones.getId()}" value="redaguoti">Redaguoti</button></td>
-			<td><button class="delete" th:attr="data-id=${zmones.getId()}">Šalinti</button></td>		
-		</tr>
-	</table>
+	<div id="menu1">
+   
+	    <nav>
+			<a th:each="menu_item : ${lst_menu}" th:href="${menu_item.itemurl()}" th:text="${menu_item}"></a>
+	    </nav>	
+	    
+  	</div>
+
+	<div id="content">
 	
-	<div id="vartotojo_pridejimas">
-		<form method="post" action="">
-			<label for="vardas"><br> Vardas: <br></label>
-			<input type="text" name="vardas" id="vardas" value="">
-			<label for="pavarde"><br> Pavardė: <br></label>
-			<input type="text" name="pavarde" id="pavarde" value="">
-			<label for="elektroninis_pastas"><br> Elektroninis paštas: <br></label>
-			<input type="text" name="elektroninis_pastas" id="elektroninis_pastas" value="">
-			<label for="telefono_numeris"><br> Telefono numeris: <br></label>
-			<input type="text" name="telefono_numeris" id="telefono_numeris" value="">
-			<input type="hidden" id="id" name="id" value="0">
-			<input type="hidden" id="prideti" name="prideti" value="prideti">
-		</form>
-	</div>
-	
-	<div id="dialog-confirm" title="Pasirinktų duomenų šalinimas">
-		<p>Ar tikrai norite ištrinti pasirinktus duomenis?</p>
-		<form id="salinimo_forma" method="post" action="/salinti-vartotoja">
-				<input type="hidden" name="salinti" id="salinti" value="salinti">
-				<input type="hidden" name="id_iraso" id="id_iraso" value="0">	
-		</form>
-	</div>
+		<table>
+			<tr th:each="zmones : ${zmones}">
+				<td th:text="${zmones.getVardas()}"></td>
+				<td th:text="${zmones.getPavarde()}"></td>
+				<td th:text="${zmones.getPartija()} == null ? '???' : ${zmones.getPartija().getPartija()}"></td>	
+				<td th:text="${zmones.getElektroninis_pastas()}"></td>			
+				<td th:text="${zmones.getTelefono_numeris()}"></td>	
+				<td><button class="edit" th:attr="data-id=${zmones.getId()}" value="redaguoti">Redaguoti</button></td>
+				<td><button class="delete" th:attr="data-id=${zmones.getId()}">Šalinti</button></td>		
+			</tr>
+		</table>
 		
-	<button id="pridejimo_mygtukas">Vartotojo pridejimas</button>
-	
+		<div id="vartotojo_pridejimas">
+			<form method="post" action="">
+				<label for="vardas"><br> Vardas: <br></label>
+				<input type="text" name="vardas" id="vardas" value="">
+				<label for="pavarde"><br> Pavardė: <br></label>
+				<input type="text" name="pavarde" id="pavarde" value="">
+				<label for="elektroninis_pastas"><br> Elektroninis paštas: <br></label>
+				<input type="text" name="elektroninis_pastas" id="elektroninis_pastas" value="">
+				<label for="telefono_numeris"><br> Telefono numeris: <br></label>
+				<input type="text" name="telefono_numeris" id="telefono_numeris" value="">
+				<input type="hidden" id="id" name="id" value="0">
+				<input type="hidden" id="prideti" name="prideti" value="prideti">
+			</form>
+		</div>
+		
+		<div id="dialog-confirm" title="Pasirinktų duomenų šalinimas">
+			<p>Ar tikrai norite ištrinti pasirinktus duomenis?</p>
+			<form id="salinimo_forma" method="post" action="/salinti-vartotoja">
+					<input type="hidden" name="salinti" id="salinti" value="salinti">
+					<input type="hidden" name="id_iraso" id="id_iraso" value="0">	
+			</form>
+		</div>
+			
+		<button id="pridejimo_mygtukas">Vartotojo pridejimas</button>
+		
+	</div>
+
 </body>
 
 

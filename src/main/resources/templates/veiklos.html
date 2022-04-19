@@ -5,6 +5,9 @@
 	
 	<meta charset="utf-8">
 	
+	<link rel="stylesheet" href="main_style.css">
+	<link rel="stylesheet" href="menu.css">	
+	
 	<style>
 	
 		table{
@@ -39,21 +42,36 @@
 
 <body>
 
-	<table>
-	   <tr>
-	    <th>Veikla</th>
-	    <th>Veiklos aprašymas</th>
-	    <th>Dalyvaujančių žmonių skaičius</th>
-	    <th>Išsamesnė dalyvių informacija</th>
-	   </tr>
-		
-		<tr th:each="veikla : ${veiklos}">
-			<td th:text="${veikla.getVeikla()}"></td>
-			<td th:text="${veikla.getAprasymas()}"></td>
-			<td></td>
-			<td><button><a id="linkas" th:href=@{veikla1(i=${veikla.getId()})}>Žmonių duomenys</a></button></td>
-		</tr>
-	</table>
+    <div id="menu1">
+   
+	    <nav>
+			<a th:each="menu_item : ${lst_menu}" th:href="${menu_item.itemurl()}" th:text="${menu_item}"></a>
+	    </nav>	
+	    
+    </div>
+	
+	<div id="content">
+	
+		<table>
+		   <tr>
+		    <th>Veikla</th>
+		    <th>Veiklos aprašymas</th>
+		    <th>Dalyvaujančių žmonių skaičius</th>
+		    <th>Išsamesnė dalyvių informacija</th>
+		   </tr>
+			
+			<tr th:each="veikla : ${veiklos}">
+				<td th:text="${veikla.getVeikla()}"></td>
+				<td th:text="${veikla.getAprasymas()}"></td>
+				<td></td>
+				<td><button><a id="linkas" th:href=@{veikla1(i=${veikla.getId()})}>Žmonių duomenys</a></button></td>
+			</tr>
+		</table>
+	
+	</div>
+	    
+	
+
 	
 </body>
 

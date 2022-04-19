@@ -5,9 +5,11 @@
 	
 	<meta charset="utf-8">
 	
+	<link rel="stylesheet" href="menu.css">
+	
 	<style>
 	
-		table{
+			table{
     		
 				border-collapse: collapse;
 			
@@ -20,18 +22,40 @@
 			
 			}
 			
+			#content1{
+			
+
+				position: relative;
+				width: 700px;
+				top: 30px;
+				left: 740px;
+				
+			}
+			
 	</style>
 
 </head>
 
 <body>
 
-	<table>
-		<tr th:each="partijos : ${partijos}">
-			<td th:text="${partijos.getPartija()}"></td>
-			<td><span th:each="zmones : ${partijos.getZmones()}" th:text="|${zmones.getVardas()} ${zmones.getPavarde()} , |"></span></td>
-		</tr>
-	</table>
+	<div id="menu1">
+   
+	    <nav>
+			<a th:each="menu_item : ${lst_menu}" th:href="${menu_item.itemurl()}" th:text="${menu_item}"></a>
+	    </nav>	
+	    
+    </div>
+
+	<div id="content1">
+	
+		<table>
+			<tr th:each="partijos : ${partijos}">
+				<td th:text="${partijos.getPartija()}"></td>
+				<td><span th:each="zmones : ${partijos.getZmones()}" th:text="|${zmones.getVardas()} ${zmones.getPavarde()} , |"></span></td>
+			</tr>
+		</table>
+		
+	</div>
 	
 </body>
 

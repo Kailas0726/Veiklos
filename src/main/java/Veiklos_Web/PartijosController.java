@@ -27,6 +27,7 @@ public class PartijosController {
 			
 			
 			model.addAttribute("partijos", partijos_repository.findAll() );
+			model.addAttribute("lst_menu", Menu.values() );
 			
 			return "partijos";
 			

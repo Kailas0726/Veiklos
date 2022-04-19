@@ -28,6 +28,7 @@ public class VeiklosController {
 			
 			
 			model.addAttribute("veiklos", veiklos_repository.findAll() );
+			model.addAttribute("lst_menu", Menu.values() );
 			
 			return "veiklos";
 			
@@ -60,6 +61,7 @@ public class VeiklosController {
 		}
 		
 		model.addAttribute("veikla1", veikla111);
+		model.addAttribute("lst_menu", Menu.values() );
 		
 		return "veikla1";
 		
