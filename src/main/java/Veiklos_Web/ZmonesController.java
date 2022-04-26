@@ -1,6 +1,7 @@
 package Veiklos_Web;
 
 import java.io.IOException;
+//import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,12 @@ public class ZmonesController {
 
 	@Autowired
 	private ZmonesRepository zmones_repository;
+	
+	@Autowired
+	private VeiklosRepository veiklos_repository;
+	
+	@Autowired
+	private ZmonesVeiklosRepository zmones_veiklos_repository;
 	
 	@RequestMapping(path="/zmones", method={ RequestMethod.GET, RequestMethod.POST })
     public String zmones(@RequestParam(name="id", required=false, defaultValue="0") Integer id 
@@ -103,5 +110,98 @@ public class ZmonesController {
 		}
 		return "redirect:zmones";
 	}
+	
+	/*@RequestMapping("/zmones1")
+	public String @ResponseBody Zmones zmones1(@RequestParam(name="i", required=true, defaultValue="0") String id, Model model)
+	{
+		//model.addAttribute("name", id);
+		Optional<Zmones> zmones11 = zmones_repository.findById(Integer.parseInt(id));
+		Zmones zmones111 = null;
+		if(!zmones11.isEmpty()) {
+			
+			zmones111 = zmones11.get();
+			
+		}
+		return zmones111;
+	}*/
+	
+	/*@RequestMapping("/zmones1")
+	public String veikla1(@RequestParam(name="i", required=true, defaultValue="0") String id, Model model)
+	{
+		//model.addAttribute("name", id);
+		Optional<Zmones> zmones11 = zmones_repository.findById(Integer.parseInt(id));
+		Zmones zmones111 = null;
+		if(!zmones11.isEmpty()) {
+			
+			zmones111 = zmones11.get();
+			
+		}
+		
+		model.addAttribute("zmones1", zmones111);
+		model.addAttribute("lst_menu", Menu.values() );
+		model.addAttribute("lst_veiklos", veiklos_repository.findAll());
+		
+		return "zmones1";
+	
+	}*/
+	
+	@RequestMapping(path="/zmones1")
+    public String zmones1(@RequestParam(name="i", required=true, defaultValue="0") String id 
+			, @RequestParam(name="papildyti", required=false, defaultValue="nepapildyti") String papildyti
+			, @RequestParam(name="veiklos", required=false, defaultValue="") String veiklos
+			, @RequestParam(name="kontaktai", required=false, defaultValue="") String kontaktai
+			, @RequestParam(name="veiklos_vieta", required=false, defaultValue="") String veiklos_vieta
+			, @RequestParam(name="veiklos_sritis", required=false, defaultValue="") String veiklos_sritis
+			, Model model) {
+		
+		Zmones zmones2 = new Zmones();
+		
+		Optional <Zmones> zmones2_row = zmones_repository.findById(Integer.parseInt(id));
+		
+		if(zmones2_row.isPresent()) {
+			
+			zmones2 = zmones2_row.get();
+			
+		}
+		
+		
+		if(papildyti.equals("papildyti")) {
+			
+			ZmonesVeiklos zmones_veiklos = new ZmonesVeiklos(id, veiklos, kontaktai, veiklos_vieta, veiklos_sritis);
+			zmones_veiklos_repository.save(zmones_veiklos);
+			return "redirect:zmones1?i=" + id;
+			
+		}
+		
+		model.addAttribute("zmones1", zmones2);
+		model.addAttribute("lst_veiklos", veiklos_repository.findAll());
+		model.addAttribute("lst_menu", Menu.values());
+			
+		return "zmones1";
+	}
+	
+	/*@RequestMapping(path="/salinti-veikla")
+    public String SalintiVeikla(@RequestParam(name="id", required=true, defaultValue="0") String id 
+    		, @RequestParam(name="veiklos_id", required=true, defaultValue="0") String veiklos_id 
+			, @RequestParam(name="salinti", required=false, defaultValue="0") String salinti
+			, Model model) {
+		
+		Integer id1 = Integer.parseInt(id);
+		Optional <ZmonesVeiklos> found = zmones_veiklos_repository.findById(id1);
+		if(salinti.equals("salinti")) {
+			
+			if(found.isPresent()) {
+				
+				ZmonesVeiklos zv = found.get();
+				zmones_veiklos_repository.deleteById(id1);
+				
+			}
+			
+		}
+		
+		
+		return "redirect:zmones1?i=" + veiklos_id;
+	}*/
+	
 	
 }

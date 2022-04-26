@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Veiklos1</title>
+	
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" href="main_style.css">
+	<link rel="stylesheet" href="menu.css">
+	
+	<style>
+	
+		table{
+    		
+				border-collapse: collapse;
+			
+			}
+			
+			th, td{
+			
+				border: 1px solid red;
+				padding: 8px;
+			
+			}
+			
+			#grazinimas {
+			
+				position: relative;
+				top: 30px;
+				
+			}
+			
+			#pridejimo_mygtukas{
+			
+				position: relative;
+				top: 15px;
+			
+			}
+			
+	</style>
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+	
+	<script>
+  		
+  		$(document).ready(function(){
+			var dialog, form;
+			
+			function addVartotojas() {
+			
+				form.submit();
+			}
+			
+			dialog = $( "#pridejimas" ).dialog({
+			      autoOpen: false,
+			      height: 400,
+			      width: 350,
+			      modal: true,
+			      buttons: {
+				"Pridėti veiklą": addVartotojas,
+				Cancel: function() {
+				dialog.dialog( "close" );
+				}
+			     }
+			});
+			
+			form = dialog.find( "form" );
+			
+			$( "#pridejimo_mygtukas" ).button().on( "click", function() {
+			      dialog.dialog( "open" );
+			});
+			
+			
+		    $( "#grazinimas" ).button().on( "click", function(){
+		    
+		    	location.href = "zmones";
+		    	
+	        });
+	        
+	    	  del_dialog = $( "#dialog-confirm" ).dialog({
+		
+			      autoOpen: false,
+			      resizable: false,
+			      height: "auto",
+			      width: 400,
+			      modal: true,
+			      buttons: {
+				"Pašalinti": function() {
+					$( this ).dialog( "close" );
+					$( '#salinimo_forma' ).submit();
+			          },
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			      }
+			});
+			
+			$( '.delete' ).button().on ( 'click', function() {
+				id_iraso = $( this ).data( 'id' );
+				//console.log(id_iraso);
+				$( '#id_iraso' ).val ( id_iraso );
+				del_dialog.dialog( "open" );
+			});
+			
+		});
+			
+	</script>
+	
+
+	
+</head>
+
+<body>
+
+	<div id="menu1">
+   
+	    <nav>
+			<a th:each="menu_item : ${lst_menu}" th:href="${menu_item.itemurl()}" th:text="${menu_item}"></a>
+	    </nav>	
+	    
+  	</div>
+	
+	<div id="content">
+		<table>
+			 <tr>
+		    	<th>Vardas</th>
+		    	<th>Pavardė</th>
+		    	<th>Partija</th>
+	    		<th>Elektroninis Paštas</th>
+	    		<th>Telefono numeris</th>
+		    </tr>
+			<tr>
+		    	<td th:text="${zmones1.getVardas()}"></td>
+		    	<td th:text="${zmones1.getPavarde()}"></td>
+		    	<td th:text="${zmones1.getPartija().getPartija()}"></td>
+		    	<td th:text="${zmones1.getElektroninis_pastas()}"></td>
+		    	<td th:text="${zmones1.getTelefono_numeris()}"></td>
+		    </tr>
+			
+		</table>
+		
+		<h3>Atliekamos veiklos :</h3>
+		
+		<table>
+			 <tr>
+		    	<th>Veiklos</th>
+		    	<th>Kontaktai</th>
+		    	<th>Veiklos vieta</th>
+		    	<th>Veiklos sritis</th>
+		    	<!--<th>Šalinimas</th>-->
+		    </tr>
+			<tr th:each="zmones_veiklos : ${zmones1.getZmones_veiklos()}">
+		    	<td th:text="${zmones_veiklos.getVeiklos().getVeikla()}"></td>
+		    	<td th:text="${zmones_veiklos.getKontaktai()}"></td>
+		    	<td th:text="${zmones_veiklos.getVeiklos_vieta()}"></td>
+		    	<td th:text="${zmones_veiklos.getVeiklos_sritis()}"></td>
+		    	<!--<td><button class="delete" th:attr="data-id=${zmones1.getId()}">Šalinti</button></td>-->
+		    </tr>
+			
+		</table>
+	
+		<div id="pridejimas">
+				<form method="post" action="">
+				
+					<input type="hidden" id="papildyti" name="papildyti" value="papildyti">
+					<input type="hidden" name="id" id="id" value="0">
+					
+					<label for="veiklos"><br> Pasirinkti veiklą: <br></label>
+					<select name="veiklos" id="veiklos" >
+						<option th:each="veiklos : ${lst_veiklos}" th:value="${veiklos.getId()}" th:text="${veiklos.getVeikla()}"></option>
+					</select>
+					
+					<label for="kontaktai"><br> Kontaktai: <br></label>
+					<input type="text" name="kontaktai" id="kontaktai" value="">
+					<label for="veiklos_vieta"><br> Veiklos vieta: <br></label>
+					<input type="text" name="veiklos_vieta" id="veiklos_vieta" value="">
+					<label for="veiklos_sritis"><br> Veiklos sritis: <br></label>
+					<input type="text" name="veiklos_sritis" id="veiklos_sritis" value="">
+				
+				</form>
+		</div>
+			
+		<div id="dialog-confirm" title="Pasirinktų duomenų šalinimas">
+				<p>Ar tikrai norite ištrinti pasirinktus duomenis?</p>
+				
+				<form id="salinimo_forma" method="post" action="">
+				
+						<input type="hidden" name="salinti" id="salinti" value="salinti">
+						<input type="hidden" name="id" id="id" value="0">
+						<input type="hidden" name="veiklos_id" id="veiklos_id" th:value="${zmones1.getId()}">
+						
+				</form>
+		</div>
+	
+		<button id="pridejimo_mygtukas">Pridėti veiklą</button>
+		
+		<br>
+		
+		<button id="grazinimas">Grįžti į pagrindinį puslapį</button>
+	</div>
+	
+</body>
+
+
+
+
+
+
+</html>

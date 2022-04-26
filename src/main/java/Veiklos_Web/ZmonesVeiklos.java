@@ -12,15 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 //import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class ZmonesVeiklos {
-
-	public ZmonesVeiklos() {
-		
-		super();
-
-	}
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,10 +28,34 @@ public class ZmonesVeiklos {
 	private String veiklos_vieta;
 	private String veiklos_sritis;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="zmones_id", referencedColumnName="id",insertable=false, updatable=false)
 	private Zmones zmones;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="veiklos_id", referencedColumnName="id",insertable=false, updatable=false)
+	private Veiklos veiklos;
+	
+	public ZmonesVeiklos() {
+		
+		super();
+
+	}
+	
+	
+	public ZmonesVeiklos(String zmones_id, String veiklos_id, String kontaktai, String veiklos_vieta, String veiklos_sritis) {
+		
+		super();
+		this.zmones_id = Integer.parseInt(zmones_id);
+		this.veiklos_id = Integer.parseInt(veiklos_id);
+		this.kontaktai = kontaktai;
+		this.veiklos_vieta = veiklos_vieta;
+		this.veiklos_sritis = veiklos_sritis;
+		
+	}
+
+
 	public Zmones getZmones() {
 		
 		return zmones;
@@ -44,6 +64,16 @@ public class ZmonesVeiklos {
 	public void setZmones(Zmones zmones) {
 		
 		this.zmones = zmones;
+		
+	}
+	public Veiklos getVeiklos() {
+		
+		return veiklos;
+		
+	}
+	public void setVeiklos(Veiklos veiklos) {
+		
+		this.veiklos = veiklos;
 		
 	}
 	public Integer getId() {
@@ -108,7 +138,4 @@ public class ZmonesVeiklos {
 		
 	}
 	
-	
-	
-
 }

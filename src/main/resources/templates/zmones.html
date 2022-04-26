@@ -23,6 +23,12 @@
 			
 			}
 			
+			#linkas1{
+				
+				 text-decoration: none;
+				
+			}
+			
 	</style>
 	
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
@@ -136,9 +142,11 @@
 				<td th:text="${zmones.getPavarde()}"></td>
 				<td th:text="${zmones.getPartija()} == null ? '???' : ${zmones.getPartija().getPartija()}"></td>	
 				<td th:text="${zmones.getElektroninis_pastas()}"></td>			
-				<td th:text="${zmones.getTelefono_numeris()}"></td>	
+				<td th:text="${zmones.getTelefono_numeris()}"></td>
+				<!--<td th:text="|${zmones.getVeiklos().getVeiklos()} |"></td>-->
 				<td><button class="edit" th:attr="data-id=${zmones.getId()}" value="redaguoti">Redaguoti</button></td>
-				<td><button class="delete" th:attr="data-id=${zmones.getId()}">Šalinti</button></td>		
+				<td><button class="delete" th:attr="data-id=${zmones.getId()}">Šalinti</button></td>
+				<td><button><a id="linkas1" th:href=@{zmones1(i=${zmones.getId()})}>Peržiūrėti</a></button></td>
 			</tr>
 		</table>
 		

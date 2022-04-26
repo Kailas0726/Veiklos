@@ -27,11 +27,11 @@ public class Partijos {
 	private Integer id;
 	private String partija;
 	
-	  @JsonIgnore
-	  @OneToMany(cascade = CascadeType.ALL)
-	  @JoinColumn(name="id_partijos", referencedColumnName="id", insertable=false, updatable=false)    
-	  private List<Zmones> zmones;
-	
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="id_partijos", referencedColumnName="id", insertable=false, updatable=false)    
+    private List<Zmones> zmones;
+ 	
 	public Integer getId() {
 		
 		return id;

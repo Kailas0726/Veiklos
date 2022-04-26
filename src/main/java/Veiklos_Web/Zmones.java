@@ -1,11 +1,17 @@
 package Veiklos_Web;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -33,6 +39,11 @@ public class Zmones {
 		 @JoinColumn(name="id_partijos", referencedColumnName="id", insertable=false, updatable=false)
 		 private Partijos partija;
 		 
+		 
+		 @OneToMany(cascade = CascadeType.ALL)
+		 @JoinColumn(name="zmones_id", referencedColumnName="id", insertable=false, updatable=false)
+		 private List<ZmonesVeiklos> zmones_veiklos;
+		 
 		public Partijos getPartija() {
 			
 			return partija;
@@ -41,6 +52,16 @@ public class Zmones {
 		public void setPartija(Partijos partija) {
 			
 			this.partija = partija;
+			
+		}
+		public List<ZmonesVeiklos> getZmones_veiklos() {
+			
+			return zmones_veiklos;
+			
+		}
+		public void setZmones_veiklos(List<ZmonesVeiklos> zmones_veiklos) {
+			
+			this.zmones_veiklos = zmones_veiklos;
 			
 		}
 		public Integer getId() {
