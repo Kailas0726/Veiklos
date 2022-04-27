@@ -29,11 +29,11 @@ public class ZmonesVeiklos {
 	private String veiklos_sritis;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="zmones_id", referencedColumnName="id",insertable=false, updatable=false)
 	private Zmones zmones;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne//(cascade = CascadeType.ALL)
 	@JoinColumn(name="veiklos_id", referencedColumnName="id",insertable=false, updatable=false)
 	private Veiklos veiklos;
 	
