@@ -56,14 +56,13 @@
 		   <tr>
 		    <th>Veikla</th>
 		    <th>Veiklos aprašymas</th>
-		    <th>Dalyvaujančių žmonių skaičius</th>
+		    <!--<th>Dalyvaujančių žmonių skaičius</th>-->
 		    <th>Išsamesnė dalyvių informacija</th>
 		   </tr>
 			
 			<tr th:each="veikla : ${veiklos}">
 				<td th:text="${veikla.getVeikla()}"></td>
 				<td th:text="${veikla.getAprasymas()}"></td>
-				<td></td>
 				<td><button><a id="linkas" th:href=@{veikla1(i=${veikla.getId()})}>Žmonių duomenys</a></button></td>
 			</tr>
 		</table>

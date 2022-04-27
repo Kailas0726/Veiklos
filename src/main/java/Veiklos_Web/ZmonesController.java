@@ -97,7 +97,7 @@ public class ZmonesController {
 		Zmones zmones = new Zmones();
 		
 		if ( salinti.equals( "salinti" ) ) {
-			System.out.println(id);
+			//System.out.println(id);
 			Optional <Zmones> found = zmones_repository.findById( id );
 			
 				if ( found.isPresent() ) {
@@ -180,28 +180,34 @@ public class ZmonesController {
 		return "zmones1";
 	}
 	
-	/*@RequestMapping(path="/salinti-veikla")
-    public String SalintiVeikla(@RequestParam(name="id", required=true, defaultValue="0") String id 
-    		, @RequestParam(name="veiklos_id", required=true, defaultValue="0") String veiklos_id 
+	@RequestMapping(path="/salinti-veikla")
+    public String SalintiVeikla(@RequestParam(name="veiklos_zmones_id", required=true, defaultValue="0") String id
+    		, @RequestParam(name="zmones_id", required=false, defaultValue="0") String zmones_id
 			, @RequestParam(name="salinti", required=false, defaultValue="0") String salinti
 			, Model model) {
+		try
+		{
 		
 		Integer id1 = Integer.parseInt(id);
 		Optional <ZmonesVeiklos> found = zmones_veiklos_repository.findById(id1);
-		if(salinti.equals("salinti")) {
-			
-			if(found.isPresent()) {
+			if(salinti.equals("salinti")) {
 				
-				ZmonesVeiklos zv = found.get();
-				zmones_veiklos_repository.deleteById(id1);
+				if(found.isPresent()) {
+					
+					ZmonesVeiklos zmones_veiklos = found.get();
+					zmones_veiklos_repository.deleteById(id1);
+					
+				}
 				
 			}
+		}catch(Exception e) {
+			
+			e.printStackTrace();
 			
 		}
 		
 		
-		return "redirect:zmones1?i=" + veiklos_id;
-	}*/
-	
+		return "redirect:zmones1?i=" + zmones_id;
+	}
 	
 }
