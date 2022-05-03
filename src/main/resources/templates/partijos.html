@@ -28,7 +28,7 @@
 				position: relative;
 				width: 700px;
 				top: 30px;
-				left: 740px;
+				left: 770px;
 				
 			}
 			
@@ -51,7 +51,7 @@
 		<table>
 			<tr th:each="partijos : ${partijos}">
 				<td th:text="${partijos.getPartija()}"></td>
-				<td><span th:each="zmones : ${partijos.getZmones()}" th:text="|${zmones.getVardas()}, ${zmones.getPavarde()}|"></span></td>
+				<td><span th:each="zmones : ${partijos.getZmones()}" th:text="|${zmones.getVardas()} ${zmones.getPavarde()},|"></span></td>
 			</tr>
 		</table>
 		

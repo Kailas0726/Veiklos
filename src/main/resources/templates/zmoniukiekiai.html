@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Veiklos</title>
+	
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" href="main_style.css">
+	<link rel="stylesheet" href="menu.css">	
+	
+	<style>
+			table{
+    		
+				border-collapse: collapse;
+			
+			}
+			
+			th, td{
+			
+				border: 1px solid red;
+				padding: 8px;
+				text-align: center
+			
+			}
+			#zmoniu_kiekiai{
+			
+				width: 600px;
+				margin: 30px auto;
+						
+			}
+	</style>
+
+</head>
+
+<body>
+
+    <div id="menu1">
+   
+	    <nav>
+			<a th:each="menu_item : ${lst_menu}" th:href="${menu_item.itemurl()}" th:text="${menu_item}"></a>
+	    </nav>	
+	    
+    </div>
+	
+	<div id="zmoniu_kiekiai">
+			<table>
+				<tr>
+				    <th>Veikla</th>
+				    <th>Veiklos aprašymas</th>
+				    <th>Dalyvaujančių žmonių skaičius</th>
+			    </tr>
+				<tr th:each="zmoniu_kiekiai : ${lst_zmoniu_kiekiai}">
+					<!--<td th:text="${zmoniu_kiekiai[0]}"></td>-->								
+					<td th:text="${zmoniu_kiekiai[1]}"></td>				
+					<td th:text="${zmoniu_kiekiai[2]}"></td>
+					<td th:text="${zmoniu_kiekiai[3]}"></td>
+				</tr>
+			</table>	
+	</div>
+	
+
+	
+</body>
+
+
+
+
+
+
+</html>

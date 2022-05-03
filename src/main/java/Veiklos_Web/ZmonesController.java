@@ -4,14 +4,20 @@ import java.io.IOException;
 //import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 @Controller
 public class ZmonesController {
@@ -25,6 +31,18 @@ public class ZmonesController {
 	
 	@Autowired
 	private ZmonesVeiklosRepository zmones_veiklos_repository;
+	
+	@Autowired 
+	EntityManagerFactory factory;
+	
+	public SessionFactory sessionFactory() {
+
+		
+        if (factory.unwrap(SessionFactory.class) == null) {
+            throw new NullPointerException("factory is not a hibernate factory");
+        }
+        return factory.unwrap(SessionFactory.class);
+	}
 	
 	@RequestMapping(path="/zmones", method={ RequestMethod.GET, RequestMethod.POST })
     public String zmones(@RequestParam(name="id", required=false, defaultValue="0") Integer id 
@@ -208,6 +226,23 @@ public class ZmonesController {
 		
 		
 		return "redirect:zmones1?i=" + zmones_id;
+	}
+	
+	@GetMapping(path="/zmoniukiekiai")
+	public  String	ZmoniuKiekiai(
+			 Model model) {
+		
+		
+		
+		Session session = this.sessionFactory().openSession();
+		
+		ZmoniuKiekiaiUzklausa zmoniu_kiekiai_uzklausa =  new ZmoniuKiekiaiUzklausa( session );
+		
+		model.addAttribute("lst_zmoniu_kiekiai", zmoniu_kiekiai_uzklausa.zmoniuKiekiai() );
+		model.addAttribute("lst_menu", Menu.values());
+		
+		return "zmoniukiekiai";
+		
 	}
 	
 }
