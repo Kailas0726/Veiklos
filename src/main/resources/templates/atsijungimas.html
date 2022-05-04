@@ -1,0 +1,86 @@
+<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+	<head>
+		<title>Atsijungimas</title>
+		
+		<link rel="stylesheet" href="menu.css">
+		
+		<style>
+			
+			#menu1{
+				
+				position: relative;
+				top: 30px;
+			
+			}
+			
+			#atsijungimas{
+			
+				margin: 0;
+	            position: absolute;
+	            top: 95px;
+	            left: 895px;
+	            -ms-transform: translateY(-50%);
+	            transform: translateY(-50%); 
+	            background-color: red;
+	            border: none;
+	            color: white;
+	            padding: 16px 32px;
+	            text-align: center;
+	            text-decoration: none;
+	            display: inline-block;
+	            font-size: 16px;
+	            margin: 4px 2px;
+	            transition-duration: 0.4s;
+	            cursor: pointer;  
+			
+			}
+			
+			#atsijungimas:hover{
+			
+				background-color: white; 
+	         	color: black; 
+	          	border: 2px solid red;
+			
+			}
+			
+		</style>
+		
+	    <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+	   <link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css">
+	   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>-->
+	    
+	    <!--<script>
+	    
+	    	$(document).ready(function(){
+	
+				$( '#atsijungimas' ).button()
+				
+			});
+			
+	    </script>-->
+	    
+	</head>
+
+	<body>
+
+	   <div id="menu1">
+	   
+		    <nav>
+				<a th:each="menu_item : ${lst_menu}" th:href="${menu_item.itemurl()}" th:text="${menu_item}"></a>
+		    </nav>	
+		    
+	    </div>
+	    
+		<!--<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+        <form th:action="@{/logout}" method="post">
+            <input id="atsijungimas" type="submit" value="Atsijungti"/>
+        </form>
+        
+	</body>
+
+
+</html>

@@ -245,4 +245,14 @@ public class ZmonesController {
 		
 	}
 	
+	@RequestMapping(path="/atsijungimas")
+	public  String	Atsijungimas(
+			 Model model) {
+		
+		model.addAttribute("lst_menu", Menu.values());
+		
+		return "atsijungimas";
+		
+	}
+	
 }

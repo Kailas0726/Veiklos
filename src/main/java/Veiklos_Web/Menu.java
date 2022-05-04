@@ -5,7 +5,8 @@ public enum Menu {
 	Veiklos("/veiklos")
 	, Žmonės("/zmones")
 	, Partijos("/partijos")
-	, Kiekis("/zmoniukiekiai");
+	, Kiekis("/zmoniukiekiai")
+	, Atsijungimas("/atsijungimas");
 	
 	private final String itemurl;
 	
