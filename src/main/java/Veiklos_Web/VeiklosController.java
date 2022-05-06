@@ -20,6 +20,14 @@ public class VeiklosController {
 	@Autowired
 	private VeiklosRepository veiklos_repository;
 	
+	/**
+	 * gaunamas veiklų sąrašas
+	 * 
+	 * @param Integer id
+	 * @param String veikla
+	 * @param String aprasymas
+	 * @return veiklos - gražinamas veiklų sąrašas
+	 */
 	@RequestMapping(path="/veiklos", method={ RequestMethod.GET, RequestMethod.POST })
     public String zmones(@RequestParam(name="id", required=false, defaultValue="0") Integer id
 			, @RequestParam(name="veikla", required=false, defaultValue="") String veikla
@@ -47,6 +55,13 @@ public class VeiklosController {
 		}
 		return veikla111;
 	}*/
+	
+	/**
+	 * gaunamas veiklų sąrašas
+	 * 
+	 * @param id  - pagal id surandami žmonės kurie atlieka tam tikrą veiklą
+	 * @return veikla1 - grąžinami duomenys templat'e
+	 */
 	
 	@RequestMapping("/veikla1")
 	public String veikla1(@RequestParam(name="i", required=true, defaultValue="0") String id, Model model)

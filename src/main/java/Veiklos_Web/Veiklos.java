@@ -15,12 +15,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Veiklos {
 
-	public Veiklos() {
-		
-		super();
-		
-	}
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	
@@ -32,6 +26,19 @@ public class Veiklos {
 	@JoinColumn(name="veiklos_id", referencedColumnName="id", insertable=false, updatable=false)
 	private List<ZmonesVeiklos> zmones_veiklos;
 	
+	public Veiklos() {
+		
+		super();
+		
+	}
+	
+	public Veiklos(String veikla, String aprasymas) {
+		
+		super();
+		this.veikla = veikla;
+		this.aprasymas = aprasymas;
+		
+	}
 	
 	public List<ZmonesVeiklos> getZmones_veiklos() {
 		

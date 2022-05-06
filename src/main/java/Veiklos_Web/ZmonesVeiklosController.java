@@ -18,10 +18,24 @@ public class ZmonesVeiklosController {
 	@Autowired
 	private ZmonesRepository zmones_veiklos_repository;
 	
+	/**
+	 * gaunamas sujungtinės lentelės sąrašas 
+	 * 
+	 * @param id
+	 * @param zmones_id
+	 * @param veiklos_id
+	 * @param kontaktai
+	 * @param veiklos_vieta
+	 * @param veiklos_sritis
+	 * @return zmonesveiklos - grąžinamami sujungtinės lentelės duomenis
+	 */
 	@RequestMapping(path="/zmonesveiklos", method={ RequestMethod.GET, RequestMethod.POST })
     public String zmones(@RequestParam(name="id", required=false, defaultValue="0") Integer id
-			, @RequestParam(name="veikla", required=false, defaultValue="") String veikla
-			, @RequestParam(name="aprasymas", required=false, defaultValue="") String aprasymas
+			, @RequestParam(name="veikla", required=false, defaultValue="") String zmones_id
+			, @RequestParam(name="aprasymas", required=false, defaultValue="") String veiklos_id
+			, @RequestParam(name="aprasymas", required=false, defaultValue="") String kontaktai
+			, @RequestParam(name="aprasymas", required=false, defaultValue="") String veiklos_vieta
+			, @RequestParam(name="aprasymas", required=false, defaultValue="") String veiklos_sritis
 			, Model model) {
 			
 			

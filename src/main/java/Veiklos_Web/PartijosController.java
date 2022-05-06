@@ -18,11 +18,16 @@ public class PartijosController {
 	@Autowired
 	private PartijosRepository partijos_repository;
 	
+	/**
+	 * gaunamas veiklų sąrašas
+	 * 
+	 * @param id
+	 * @param partija
+	 * @return partijos - gražinamas partijų sąrašas
+	 */
 	@RequestMapping(path="/partijos", method={ RequestMethod.GET, RequestMethod.POST })
     public String zmones(@RequestParam(name="id", required=false, defaultValue="0") Integer id
-			, @RequestParam(name="vardas", required=false, defaultValue="") String vardas
-			, @RequestParam(name="pavarde", required=false, defaultValue="") String pavarde
-			, @RequestParam(name="elektroninis_pastas", required=false, defaultValue="") String elektroninis_pastas
+			, @RequestParam(name="partija", required=false, defaultValue="") String partija
 			, Model model) {
 			
 			

@@ -44,6 +44,16 @@ public class ZmonesController {
         return factory.unwrap(SessionFactory.class);
 	}
 	
+	/**
+	 * pridedamas žmogus į žmonės lentelę
+	 * @param id
+	 * @param vardas - pridėti vartotojo vardui
+	 * @param pavarde - pridėti vartotojo pavardei
+	 * @param elektroninis_pastas - pridėti vartotojo elektroniniam paštui
+	 * @param telefono_numeris - pridėti vartotojo telefono numeriui
+	 * @param prideti - pridejimo forma
+	 * @return zmones - grąžina pridėtus duomenis
+	 */
 	@RequestMapping(path="/zmones", method={ RequestMethod.GET, RequestMethod.POST })
     public String zmones(@RequestParam(name="id", required=false, defaultValue="0") Integer id 
 			, @RequestParam(name="vardas", required=false, defaultValue="") String vardas
@@ -86,6 +96,12 @@ public class ZmonesController {
 		return "zmones";
 	}
 	
+	/**
+	 * redaguojami duomenys apie žmogų zmonės lentelėje
+	 * 
+	 * @param id - surasti kurio vartotojo duomenys yra redaguojamas
+	 * @return zmones - grąžina paredaguotus duomenis
+	 */
 	@RequestMapping(path="/zmogus")	
 	public @ResponseBody Zmones zmoniuDuom(@RequestParam(name="id", required=true, defaultValue="0") Integer id ) throws IOException {
 
@@ -107,6 +123,13 @@ public class ZmonesController {
 
 	}
 	
+	/**
+	 * šalinami duomenys iš žmonės lentelės
+	 * 
+	 * @param id - surasti kuris vartotojas šalinamas iš lentelės
+	 * @param salinti - šalinimo forma
+	 * @return redirect:zmones - grąžina duomenis, su jau ištrintu varototoju
+	 */
 	@RequestMapping(path="/salinti-vartotoja")
 	public  String salintiVartotoja (@RequestParam(name="id_iraso", required=true, defaultValue="0") Integer id 
 			, @RequestParam(name="salinti", required=false, defaultValue="0") String salinti
