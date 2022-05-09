@@ -5,12 +5,15 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.Optional;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 																						
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.test.context.junit4.SpringRunner;
 
 
 //@RunWith(SpringRunner.class)
@@ -24,9 +27,9 @@ public class VeiklosRepositoryTest {
     public void testSaveGetVeiklos() {
 
         																			      	
-        Veiklos veiklos = new Veiklos("Sportas", "Įvairūs sporto uzsiėmimai");
+        Veiklos veiklos = new Veiklos("Šokiai", "Įvairūs šokių uzsiėmimai");
         Veiklos veikl = veiklosRepository.save(veiklos);
-        Veiklos veik = veiklosRepository.findByVeikla("Sportas");
+        Veiklos veik = veiklosRepository.findByVeikla("Šokiai");
         																			            
         assertNotNull(veiklos);
         																			          
