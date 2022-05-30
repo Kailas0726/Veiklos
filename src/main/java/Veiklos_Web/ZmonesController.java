@@ -251,17 +251,18 @@ public class ZmonesController {
 		return "redirect:zmones1?i=" + zmones_id;
 	}
 	
-	@GetMapping(path="/zmoniukiekiai")
+	@RequestMapping(path="/zmoniukiekiai")
 	public  String	ZmoniuKiekiai(
-			 Model model) {
-		
+			@RequestParam(name="nuo", required=false, defaultValue="1") String nuo
+			, @RequestParam(name="iki", required=false, defaultValue="100000") String iki
+			, Model model) {
 		
 		
 		Session session = this.sessionFactory().openSession();
 		
 		ZmoniuKiekiaiUzklausa zmoniu_kiekiai_uzklausa =  new ZmoniuKiekiaiUzklausa( session );
 		
-		model.addAttribute("lst_zmoniu_kiekiai", zmoniu_kiekiai_uzklausa.zmoniuKiekiai() );
+		model.addAttribute("lst_zmoniu_kiekiai", zmoniu_kiekiai_uzklausa.zmoniuKiekiai(nuo, iki) );
 		model.addAttribute("lst_menu", Menu.values());
 		
 		return "zmoniukiekiai";

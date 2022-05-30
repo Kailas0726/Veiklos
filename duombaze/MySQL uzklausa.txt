@@ -1,0 +1,19 @@
+SELECT 
+	`veiklos`.`id` AS `id`
+    ,`veiklos`.`veikla` AS `veikla`
+    ,`veiklos`.`aprasymas` AS `aprasymas`
+    , COUNT(`zmones`.`id`) AS `zmoniu_skaicius`
+FROM
+	`veiklos`
+LEFT JOIN
+	`zmones_veiklos` ON(
+        `veiklos`.`id` = `zmones_veiklos`.`veiklos_id`
+     )
+LEFT JOIN
+	`zmones` ON(
+		`zmones_veiklos`.`zmones_id` = `zmones`.`id` 
+     )
+GROUP BY
+	`veiklos`.`id`
+HAVING
+	`zmoniu_skaicius` BETWEEN 2 AND 6

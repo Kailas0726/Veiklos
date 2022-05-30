@@ -58,6 +58,16 @@
 			</table>	
 	</div>
 	
+	<br>
+	
+			<form method="post" action="/zmoniukiekiai">
+			<label for ="kiekio_tikrinimas"><h3>Irašykite norimą kiekį:</h3></label><br>
+			<input type="text" name="nuo" id="nuo">
+			<input type="text" name="iki" id="iki">
+			<input type="submit" value="Ieškoti">
+			<input type="hidden" name="_csrf" th:value='${_csrf.token}'>
+			</form>
+	
 
 	
 </body>

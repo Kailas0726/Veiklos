@@ -15,29 +15,32 @@ public class ZmoniuKiekiaiUzklausa {
 		    this.em = em;
 	  }
 	  
-	  public List<ZmoniuKiekiai> zmoniuKiekiai() {
+	  public List<ZmoniuKiekiai> zmoniuKiekiai( String nuo, String iki) {
 		  
 		  String zmoniu_kiekiai =
 				  
-				"SELECT" 
+				"SELECT " 
 				  +		"`veiklos`.`id` AS `id`"
 				  + 	", `veiklos`.`veikla` AS `veikla`"
 				  + 	", `veiklos`.`aprasymas` AS `aprasymas`"
 				  + 	", COUNT(`zmones`.`id`) AS `zmoniu_skaicius`"
-				  +"FROM"
+				  +" FROM "
 				  +		"`veiklos`"
-				  +"LEFT JOIN"
+				  +" LEFT JOIN "
 				  +	"	`zmones_veiklos` ON("
 				  +      	"`veiklos`.`id` = `zmones_veiklos`.`veiklos_id`"
-				  +      ")"
-				  + "LEFT JOIN"
+				  +      ") "
+				  + " LEFT JOIN "
 				  + "	 `zmones` ON("
 				  +			"`zmones_veiklos`.`zmones_id` = `zmones`.`id`" 
 				  +  	  ")"
-				  + "GROUP BY"
+				  + " WHERE "
+				  +	 	  " 1 "
+				  + " GROUP BY "
 				  +			"`veiklos`.`id`"
-				  +	"HAVING"
-				  +		"`zmoniu_skaicius` BETWEEN 2 AND 6"
+				  +	" HAVING "
+				  + 	  "`zmoniu_skaicius` BETWEEN " + nuo + " AND " + iki
+				  
 				  ;
 				  
 				  
